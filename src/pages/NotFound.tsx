@@ -1,25 +1,33 @@
-/* 404 Page - Displays when a user attempts to access a non-existent route - translate to the language of the user */
-import { useLocation } from 'react-router-dom'
+import { useLocation, Link } from 'react-router-dom'
 import { useEffect } from 'react'
 
-const NotFound = () => {
+export default function NotFound() {
   const location = useLocation()
 
   useEffect(() => {
-    console.error('404 Error: User attempted to access non-existent route:', location.pathname)
+    console.error('Erro 404: Tentativa de acesso a rota inexistente:', location.pathname)
   }, [location.pathname])
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">404</h1>
-        <p className="text-xl text-gray-600 mb-4">Oops! Page not found</p>
-        <a href="/" className="text-blue-500 hover:text-blue-700 underline">
-          Return to Home
-        </a>
+    <div className="flex-1 flex items-center justify-center p-6 bg-transparent">
+      <div className="text-center space-y-4 animate-fade-in-up">
+        <div className="space-y-2">
+          <h1 className="text-4xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">
+            404
+          </h1>
+          <p className="text-sm text-zinc-500 dark:text-zinc-400">
+            A página que você está procurando não existe.
+          </p>
+        </div>
+        <div className="pt-2">
+          <Link
+            to="/"
+            className="text-sm text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors underline underline-offset-4 decoration-transparent hover:decoration-zinc-300 dark:hover:decoration-zinc-700"
+          >
+            Voltar ao início
+          </Link>
+        </div>
       </div>
     </div>
   )
 }
-
-export default NotFound
