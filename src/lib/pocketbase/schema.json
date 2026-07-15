@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-15T19:26:45.107Z",
+  "generatedAt": "2026-07-15T21:45:34.710Z",
   "collections": [
     {
       "name": "users",
@@ -29,20 +29,75 @@
           "type": "autodate",
           "required": false,
           "system": false,
-          "autodateTriggers": ["onCreate"]
+          "autodateTriggers": [
+            "onCreate"
+          ]
         },
         {
           "name": "updated",
           "type": "autodate",
           "required": false,
           "system": false,
-          "autodateTriggers": ["onCreate", "onUpdate"]
+          "autodateTriggers": [
+            "onCreate",
+            "onUpdate"
+          ]
         }
       ],
       "indexes": [
         "CREATE UNIQUE INDEX `idx_tokenKey__pb_users_auth_` ON `users` (`tokenKey`)",
         "CREATE UNIQUE INDEX `idx_email__pb_users_auth_` ON `users` (`email`) WHERE `email` != ''"
       ]
+    },
+    {
+      "name": "leads",
+      "type": "base",
+      "apiRules": {
+        "list": null,
+        "view": null,
+        "create": null,
+        "update": null,
+        "delete": null
+      },
+      "fields": [
+        {
+          "name": "name",
+          "type": "text",
+          "required": true,
+          "system": false
+        },
+        {
+          "name": "address",
+          "type": "text",
+          "required": true,
+          "system": false
+        },
+        {
+          "name": "websiteUrl",
+          "type": "url",
+          "required": false,
+          "system": false
+        },
+        {
+          "name": "siteStatus",
+          "type": "select",
+          "required": true,
+          "system": false,
+          "selectValues": [
+            "pendente",
+            "sem_site",
+            "quebrado",
+            "ok"
+          ]
+        },
+        {
+          "name": "lastCheckedAt",
+          "type": "date",
+          "required": false,
+          "system": false
+        }
+      ],
+      "indexes": []
     }
   ]
 }
